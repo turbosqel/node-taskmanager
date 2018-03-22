@@ -1,12 +1,19 @@
 const { exec , spawn } = require('child_process');
 const TaskManager = require('../manager').TaskManager;
 import {Process} from '../process';
+/*
+    todo document spawn process communication
+ */
 
 interface ExecParams {
     command:string;
     options:any;
 }
 
+/*
+    chp.exec
+    ExecParams
+ */
 TaskManager.add('chp.exec',function (process:Process):void {
     const execParam:ExecParams = process.data;
 
@@ -28,6 +35,10 @@ interface SpawnParams {
     options:any;
 }
 
+/*
+    chp.spawn
+    SpawnParams
+ */
 TaskManager.add('chp.spawn',function (process:Process):void {
     const spawnParam:SpawnParams = process.data;
 

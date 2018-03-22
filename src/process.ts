@@ -16,7 +16,7 @@ export class Process {
         this.mediator.onProgress.dispatch(progress);
     }
 
-    public end(data:any, exitCode:number = 0):void {
+    public end(data?:any, exitCode:number = 0):void {
         this.mediator.onEnd.dispatch({output:data, exitCode});
     }
 
