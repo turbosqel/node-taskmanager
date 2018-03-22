@@ -10,7 +10,8 @@
     "typescript": "^2.0.6"
   },
   "scripts": {
-    "build": "gulp scripts",
-    "test": "node ./tests/tests.ts"
+    "watch": "gulp watch",
+    "test": "node ./tests/tests.ts",
+    "postinstall": "gulp scripts"
   }
 }
