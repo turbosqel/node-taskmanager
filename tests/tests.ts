@@ -2,6 +2,9 @@
 const TaskManager = require( '../dist/run').Task;
 const path = require('path');
 
+TaskManager.run('fsu.cwd').onEnd.add((result) => {
+    console.log('directory :',result.output);
+});
 
 TaskManager.run('fsu.dir', './').onEnd.add((result) => {
     console.log('directory listing test:',result.output)
@@ -15,12 +18,16 @@ TaskManager.run('fsu.readText', './package.json').onEnd.add((result) => {
     console.log('read package.json content:',result.output);
 });
 
-TaskManager.run('fsu.saveText', {path:'./test.txt', data:'test text'}).onEnd.add((result) => {
-    console.log('save test.txt file:',result);
-});
-
 TaskManager.run('fsu.read', new Date().getTime().toString()).onEnd.add((result) => {
     console.log('error reading file:',result);
+});
+
+TaskManager.run('fsu.mkdir', './test-folder/').onEnd.add((result) => {
+    console.log('dir created');
+});
+
+TaskManager.run('fsu.saveText', {path:'./test-folder/test.txt', data:'test text'}).onEnd.add((result) => {
+    console.log('save test.txt file:',result);
 });
 
 TaskManager.run('chp.exec', {command:'node -v'}).onEnd.add((result) => {
@@ -30,6 +37,7 @@ TaskManager.run('chp.exec', {command:'node -v'}).onEnd.add((result) => {
 TaskManager.run('chp.exec', {command:'npm i'}).onEnd.add((result) => {
     console.log('exec test:',result);
 });
+
 
 
 

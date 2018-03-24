@@ -9,6 +9,10 @@ export class Process {
 
     public start():void {
         // todo process config options
+        if(!this.creator) {
+            this.end(null,-1);
+            return;
+        }
         this.creator.startFunction(this);
     }
 
