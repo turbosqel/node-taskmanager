@@ -38,10 +38,6 @@ TaskManager.run('chp.exec', {command:'npm i'}).onEnd.add((result) => {
     console.log('exec test:',result);
 });
 
-
-
-
-
 const processPath = path.join(__dirname);
 const spawnTestProcess = TaskManager.run('chp.spawn', {command:'cmd.exe' , params:['/c','spawntest.bat'], options:{cwd:processPath} });
 spawnTestProcess.onProgress.add((data) => {
@@ -57,7 +53,7 @@ spawnTestProcess.onEnd.add((result) => {
     console.log('spawn end:',result);
 });
 
-/*
+
 const npmTestPath = path.join(__dirname , '../');
 const spawnTestProcess = TaskManager.run('chp.spawn', {command:'cmd.exe' , params:['/c','npm','i'], options:{cwd:npmTestPath} });
 spawnTestProcess.onProgress.add((data) => {
@@ -65,4 +61,4 @@ spawnTestProcess.onProgress.add((data) => {
 });
 spawnTestProcess.onEnd.add((result) => {
     console.log('spawn end:',result);
-});*/
+});

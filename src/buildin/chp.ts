@@ -53,7 +53,7 @@ TaskManager.add('chp.spawn',function (process:Process):void {
     });
 
     ls.stderr.on('data', (data) => {
-        process.end(data,1);
+        process.progress(data.toString());
     });
 
     ls.on('error', (err) => {
