@@ -2,6 +2,7 @@
 const TaskManager = require( '../dist/run').Task;
 const path = require('path');
 
+
 TaskManager.run('fsu.cwd').onEnd.add((result) => {
     console.log('directory :',result.output);
 });
@@ -31,11 +32,13 @@ TaskManager.run('fsu.saveText', {path:'./test-folder/test.txt', data:'test text'
 });
 
 TaskManager.run('chp.exec', {command:'node -v'}).onEnd.add((result) => {
-    console.log('exec test:',result);
+    console.log('exec test:',result.output);
+    console.log('exec test end -----------------------------');
 });
 
 TaskManager.run('chp.exec', {command:'npm i'}).onEnd.add((result) => {
-    console.log('exec test:',result);
+    console.log('exec test:',result.output);
+    console.log('exec test end -----------------------------');
 });
 
 const processPath = path.join(__dirname);
@@ -53,7 +56,7 @@ spawnTestProcess.onEnd.add((result) => {
     console.log('spawn end:',result);
 });
 
-
+/*
 const npmTestPath = path.join(__dirname , '../');
 const spawnTestProcess = TaskManager.run('chp.spawn', {command:'cmd.exe' , params:['/c','npm','i'], options:{cwd:npmTestPath} });
 spawnTestProcess.onProgress.add((data) => {
@@ -61,4 +64,4 @@ spawnTestProcess.onProgress.add((data) => {
 });
 spawnTestProcess.onEnd.add((result) => {
     console.log('spawn end:',result);
-});
+});*/

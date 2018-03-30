@@ -17,6 +17,16 @@ interface ExecParams {
 TaskManager.add('chp.exec',function (process:Process):void {
     const execParam:ExecParams = process.data;
 
+    if(!execParam) {
+        process.end('no process details',-1);
+        return;
+    }
+
+    if(!execParam.command) {
+        process.end('no process command',-1);
+        return;
+    }
+
     exec(execParam.command, (error, stdout, stderr) => {
         if (error) {
             console.error(`exec error: ${error}`);
@@ -25,7 +35,7 @@ TaskManager.add('chp.exec',function (process:Process):void {
         }
         console.log(`stdout: ${stdout}`);
         console.log(`stderr: ${stderr}`);
-        process.end(stdout);
+        process.end(stderr + stdout);
     });
 });
 
@@ -37,10 +47,24 @@ interface SpawnParams {
 
 /*
     chp.spawn
-    SpawnParams
+    SpawnParams:{
+        command:string;
+        params:string[];
+        options:any;
+    }
  */
 TaskManager.add('chp.spawn',function (process:Process):void {
     const spawnParam:SpawnParams = process.data;
+
+    if(!spawnParam) {
+        process.end('no process details',-1);
+        return;
+    }
+
+    if(!spawnParam.command) {
+        process.end('no process command',-1);
+        return;
+    }
 
     const ls = spawn(spawnParam.command, spawnParam.params, spawnParam.options);
 
@@ -57,7 +81,7 @@ TaskManager.add('chp.spawn',function (process:Process):void {
     });
 
     ls.on('error', (err) => {
-        process.end(err,-1);
+        process.end(err,1);
     });
 
     ls.on('close', (code) => {
