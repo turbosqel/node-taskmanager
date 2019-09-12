@@ -3,6 +3,14 @@ const mkdirp = require('mkdirp');
 import {TaskManager} from '../manager';
 import {Process} from '../process';
 
+
+// todo create template for typed commands
+type FSU = {
+    'fsu.dir': {path: string},
+    'fsu.mkdir': {path: string},
+    'fsu-saveText': {path: string, data: string},
+}
+
 /*
     fsu.dir
     path:string

@@ -9,8 +9,8 @@ gulp.task('scripts', () => {
   return tsResult.js.pipe(gulp.dest('dist'));
 });
 
-gulp.task('watch', ['scripts'], () => {
-  gulp.watch('src/**/*.ts', ['scripts']);
-});
+gulp.task('watch', gulp.parallel('scripts', () => {
+  gulp.watch('src/**/*.ts', gulp.parallel('scripts'));
+}));
 
-gulp.task('default', ['watch']);
+gulp.task('default', gulp.series('watch'));

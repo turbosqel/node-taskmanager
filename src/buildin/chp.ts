@@ -14,7 +14,7 @@ interface ExecParams {
     chp.exec
     ExecParams
  */
-TaskManager.add('chp.exec',function (process:Process):void {
+TaskManager.add('chp.exec', function (process:Process):void {
     const execParam:ExecParams = process.data;
 
     if(!execParam) {

@@ -22,21 +22,21 @@ export class TaskManager {
     }
 
     static hasProcess(taskName:string):boolean {
+        // todo process checking
         return false;
     }
 
 
-    //
-
+    // create unique ID
     private static processIndex:number = -1;
-    private static getNextProcessId():number {
+    private static getNextProcessId(): number {
         TaskManager.processIndex ++;
         return TaskManager.processIndex;
     }
 
     //
 
-    static add(taskName:string, processStart:(process:Process)=>void):void {
+    static add(taskName:string, processStart:(process:Process) => void): void {
         TaskManager._tasks[taskName] = new ProcessCreator(processStart);
     }
 
@@ -61,7 +61,7 @@ export class TaskManager {
     }
 
     private static _taskTrigger() {
-        if(TaskManager._taskPending.length > 0 && TaskManager._canStartTask() ) {
+        if(TaskManager._taskPending.length > 0 && TaskManager._canStartTask()) {
             const startTask:Process = TaskManager._taskPending.shift();
             TaskManager._taskActive.push(startTask);
 
